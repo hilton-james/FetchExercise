@@ -12,6 +12,3 @@ run: build
 
 clean: 
 	@go clean -cache
-
-test:
-	@go test -v ./...

@@ -26,6 +26,11 @@ func main(_ *cobra.Command, _ []string) {
 
 	storage := repositories.NewMemoryRepository()
 
+	if cfg.Debug {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	handler := gin.Default()
 	receiptHandler := handlers.NewReceipt(cfg, logger.Named("receiptHandler"), storage)
 	receiptHandler.Register(handler.Group("/receipts"))
@@ -35,7 +40,7 @@ func main(_ *cobra.Command, _ []string) {
 	// TODO: health check endpoint should be implemented (/heath)
 
 	// TODO: server should be shutdown properly (SIGINT or SIGTERM).
-	if err := handler.Run(cfg.Port); err != nil {
+	if err := handler.Run(":" + cfg.Port); err != nil {
 		logger.Fatal("failed to run server", zap.Error(err))
 	}
 }
