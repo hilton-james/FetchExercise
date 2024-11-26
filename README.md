@@ -10,10 +10,17 @@ You can test the endpoints:
 
 ```bash
 # Request
-curl -X POST localhost:5001/receipts/proce
-ss -H "Content-Type: application/json" -d '{"id": "1", "retailer": "M&M Corner Market", "purch
-aseDate": "2022-01-01", "purchaseTime": "13:01", "items": [{"shortDescription": "Mountain Dew 
-12PK", "price": "6.49"}], "total": "6.49"}'
+curl -X POST localhost:5001/receipts/process \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "1", 
+  "retailer": "M&M Corner Market", 
+  "purchaseDate": "2022-01-01", 
+  "purchaseTime": "13:01", 
+  "items": [{"shortDescription": "Mountain Dew 12PK", "price": "6.49"}], 
+  "total": "6.49"
+}'
+
 
 # Response
 {"id":"89d77822-6e10-4476-8716-40b78fcd7254"}⏎  

@@ -40,6 +40,7 @@ func CalculatePoints(receipt *entities.Receipt) (int, error) {
 
 	points += (len(receipt.Items) / 2) * 5
 
+	var result float64
 	for _, item := range receipt.Items {
 		trimmedDesc := strings.TrimSpace(item.ShortDescription)
 		if len(trimmedDesc)%3 == 0 {
@@ -48,9 +49,10 @@ func CalculatePoints(receipt *entities.Receipt) (int, error) {
 				return 0, ErrFailedToCovertToNumber
 			}
 
-			points += int(math.Ceil(itemPrice * 0.2))
+			result += itemPrice * 0.2
 		}
 	}
+	points += int(math.Ceil(result))
 
 	date, err := time.Parse("2006-01-02", receipt.PurchaseDate)
 	if err != nil {

@@ -9,7 +9,6 @@ import (
 
 func Execute() {
 
-	//nolint: exhaustruct
 	root := &cobra.Command{
 		Use:     "server",
 		Short:   "Receipt Server which serve Take-Home Exercise",
