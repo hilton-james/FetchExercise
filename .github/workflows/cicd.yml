@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./build/package/Dockerfile
           push: true
-          tags: ghcr.io/hilton-james/FetchExercise:latest
+          tags: ghcr.io/hilton-james/fetchexercise:latest

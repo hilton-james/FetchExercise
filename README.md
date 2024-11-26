@@ -37,5 +37,10 @@ sudo docker build -f ./build/package/Dockerfile -t receipt:latest .
 ```
 ## Run
 ```bash
+# local
 sudo docker run --rm -p 5001:5001 -e RECEIPT_PORT="5001" -e RECEIPT_DEBUG="TRUE" receipt-app
+
+# GitHub Container Registry
+sudo docker run --rm -p 5001:5001 -e RECEIPT_PORT="5001" -e RECEIPT_DEBUG="TRUE" ghcr.io/hilton-james/fetchexercise:latest
+ghcr.io/hilton-james/fetchexercise:latest
 ```
