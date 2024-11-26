@@ -1,14 +1,17 @@
 package logger
 
-import "go.uber.org/zap"
+import (
+	"github.com/hilton-james/FetchExercise/config"
+	"go.uber.org/zap"
+)
 
-func New(debug bool) (*zap.Logger, func(), error) {
+func New(cfg config.Receipt) (*zap.Logger, func(), error) {
 	var (
 		logger *zap.Logger
 		err    error
 	)
 
-	if debug {
+	if cfg.Debug {
 		logger, err = zap.NewDevelopment()
 	} else {
 		logger, err = zap.NewProduction()
