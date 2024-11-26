@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/hilton-james/FetchExercise/config"
 	"github.com/hilton-james/FetchExercise/internal/adapters/handlers"
+	"github.com/hilton-james/FetchExercise/internal/adapters/repositories"
 	"github.com/hilton-james/FetchExercise/pkg/logger"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
@@ -23,9 +24,10 @@ func main(_ *cobra.Command, _ []string) {
 	}
 	defer cancel()
 
-	handler := gin.Default()
-	receiptHandler := handlers.NewReceipt(cfg, logger.Named("receiptHandler"))
+	storage := repositories.NewMemoryRepository()
 
+	handler := gin.Default()
+	receiptHandler := handlers.NewReceipt(cfg, logger.Named("receiptHandler"), storage)
 	receiptHandler.Register(handler.Group("/receipts"))
 
 	logger.Info("server is running")
